@@ -1,6 +1,6 @@
 # Besprechung – 2026-03-20 Projektstart
 
-**Datum:** 2026-03-20
+**Datum:** 2026-02-27
 **Teilnehmer:** Benjamin Golder, Dennis Eberhard
 **Dauer:** k.A.
 
