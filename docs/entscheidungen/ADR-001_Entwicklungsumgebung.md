@@ -13,7 +13,7 @@ Wir verwenden **Eclipse** als Entwicklungsumgebung und **Visual Paradigm** für 
 - Eclipse ist eine etablierte, kostenlose Open-Source-IDE mit breiter Community und Plugin-Unterstützung
 - Visual Paradigm bietet umfassende UML-Unterstützung (Klassen-, Sequenz-, Use-Case-Diagramme etc.)
 - Beide Tools sind plattformunabhängig (Windows, macOS, Linux)
-- Im Team bereits vorhanden und bekannt
+- Wird in der Schule vom Dozenten genutzt und im Unterricht verwendet.
 
 ## Konsequenzen
 - Alle Entwickler installieren Eclipse in derselben Version (siehe Installationscheckliste)
