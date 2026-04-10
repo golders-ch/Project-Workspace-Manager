@@ -66,3 +66,32 @@ Dieses Protokoll dokumentiert alle Arbeitsschritte und Fortschritte im Projektve
 - Teammitglieder und Arbeitsaufteilung dokumentieren (Punkt 3: Organisation Arbeitsgruppe)
 - Installationschecklisten für Eclipse, Visual Paradigm und GitHub erstellen (Punkt 5)
 - Glossar anlegen (Punkt 7)
+
+---
+
+## 2026-04-10
+
+**Teilnehmer:** Benjamin
+**Dauer:** ca. 2h
+
+### Erledigtes
+
+**Aufgabe 3 – Objektorientierte Analyse (OOA)**
+- Ordner `docs/analyse/` angelegt
+- Fachklassenmodell erarbeitet (Basis: FA01 & FA02, Iteration 1)
+  - 8 Klassenkandidaten identifiziert und begründet
+  - Vererbungshierarchie für Projektvorlage (Standard / Kundenprojekt / Intern)
+  - Attribute und Assoziationen vollständig modelliert
+  - PlantUML-Datei `fachklassenmodell.puml` erstellt (Import in Visual Paradigm)
+- Zustandsmodell für Klasse `Projektarbeitsbereich` erstellt
+  - 5 fachliche Zustände definiert: Entwurf, In Erstellung, Aktiv, Fehlgeschlagen, Archiviert
+  - Alle Übergänge mit Auslösern und Bedingungen spezifiziert
+  - PlantUML-Datei `zustandsmodell.puml` erstellt (Import in Visual Paradigm)
+  - Fachklassenmodell ergänzt: Status `ARCHIVIERT` in Enum `ArbeitsbereichStatus` aufgenommen
+- Glossar mit fachlicher Verantwortlichkeit aller 9 Klassen erstellt
+- Vollständige OOA-Dokumentation unter `docs/analyse/aufgabe-3-ooa.md` abgelegt
+
+### Nächste Schritte
+- Diagramme in Visual Paradigm (.vpp) finalisieren und als Export (PNG/SVG) in `docs/analyse/` ablegen
+- Dennis: Gegenlesen und ergänzen
+- Rückmeldungen des Dozenten einarbeiten

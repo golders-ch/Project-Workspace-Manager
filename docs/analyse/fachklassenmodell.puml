@@ -1,0 +1,114 @@
+@startuml Fachklassenmodell_Project-Workspace-Manager
+
+skinparam classAttributeIconSize 0
+skinparam classFontStyle bold
+skinparam ArrowColor #333333
+skinparam ClassBorderColor #333333
+
+' ─── Projektarbeitsbereich ───────────────────────────────────────────────────
+class Projektarbeitsbereich {
+  + id : String
+  + name : String
+  + beschreibung : String
+  + url : String
+  + status : ArbeitsbereichStatus
+  + erstellungsDatum : Date
+}
+
+' ─── Projektmetadaten ─────────────────────────────────────────────────────────
+class Projektmetadaten {
+  + projektCode : String
+  + kostenstelle : String
+  + startDatum : Date
+  + endDatum : Date
+  + projektleiter : String
+}
+
+' ─── Benutzer ─────────────────────────────────────────────────────────────────
+class Benutzer {
+  + id : String
+  + name : String
+  + email : String
+}
+
+' ─── Berechtigung ─────────────────────────────────────────────────────────────
+class Berechtigung {
+  + rolle : BenutzerRolle
+}
+
+' ─── AuditLogEintrag ──────────────────────────────────────────────────────────
+class AuditLogEintrag {
+  + zeitstempel : DateTime
+  + aktion : String
+  + ergebnis : String
+}
+
+' ─── Projektvorlage (abstrakt) ────────────────────────────────────────────────
+abstract class Projektvorlage {
+  + id : String
+  + bezeichnung : String
+  + beschreibung : String
+}
+
+class StandardVorlage {
+}
+
+class KundenprojektVorlage {
+  + kundenbereichAktiv : Boolean
+}
+
+class InternVorlage {
+}
+
+' ─── Ordner ───────────────────────────────────────────────────────────────────
+class Ordner {
+  + bezeichnung : String
+  + pfad : String
+  + reihenfolge : Integer
+}
+
+' ─── Dokumentvorlage ──────────────────────────────────────────────────────────
+class Dokumentvorlage {
+  + bezeichnung : String
+  + dateiname : String
+  + typ : String
+}
+
+' ─── Enumerationen ────────────────────────────────────────────────────────────
+enum ArbeitsbereichStatus {
+  ENTWURF
+  IN_ERSTELLUNG
+  AKTIV
+  FEHLGESCHLAGEN
+  ARCHIVIERT
+}
+
+enum BenutzerRolle {
+  OWNER
+  MEMBER
+  VISITOR
+}
+
+' ─── Vererbung ────────────────────────────────────────────────────────────────
+Projektvorlage <|-- StandardVorlage
+Projektvorlage <|-- KundenprojektVorlage
+Projektvorlage <|-- InternVorlage
+
+' ─── Assoziationen ────────────────────────────────────────────────────────────
+Benutzer "1" --> "0..*" Projektarbeitsbereich : erstellt
+
+Projektarbeitsbereich "1" *-- "1" Projektmetadaten : hat
+Projektarbeitsbereich "1" *-- "1..*" AuditLogEintrag : protokolliert
+Projektarbeitsbereich "1" --> "1" Projektvorlage : basiert auf
+Projektarbeitsbereich "1" *-- "0..*" Berechtigung : hat
+
+Berechtigung "0..*" --> "1" Benutzer : zugewiesen an
+
+Projektvorlage "1" *-- "1..*" Ordner : definiert
+Projektvorlage "1" *-- "0..*" Dokumentvorlage : enthält
+
+' ─── Enumerations-Nutzung (Hinweis) ──────────────────────────────────────────
+Projektarbeitsbereich ..> ArbeitsbereichStatus
+Berechtigung ..> BenutzerRolle
+
+@enduml
