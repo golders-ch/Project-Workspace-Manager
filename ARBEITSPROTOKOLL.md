@@ -109,3 +109,23 @@ Dieses Protokoll dokumentiert alle Arbeitsschritte und Fortschritte im Projektve
 - Klassendiagramm aus Visual Paradigm als PNG exportiert
 - Bild unter `docs/architektur/klassendiagramm.png` abgelegt
 - `docs/architektur/README.md` mit Diagramm und Klassenbeschreibungen ergänzt
+
+---
+
+## 2026-04-11 (Unterricht)
+
+**Teilnehmer:** Benjamin Golder, Dennis Eberhard, Arif Chughtai (Dozent), Klasse
+**Dauer:** Unterrichtseinheit
+
+### Erledigtes
+
+**Diagrammbesprechung im Unterricht (Aufgabe 3 – OOA)**
+- Klassen- und Zustandsdiagramm gemeinsam mit Dozent und Klasse besprochen
+- Grundsätzlich korrekt; zwei Korrekturen im Klassendiagramm festgehalten:
+  - Abhängigkeiten durch Assoziationen ersetzen
+  - Multiplizität zwischen ProjektArbeitsbereich und ProjektVorlage anpassen (keine Komposition)
+- Aktualisierte Diagramme (Klassen- und Zustandsdiagramm) in Repository eingecheckt
+- Besprechungsprotokoll unter `docs/besprechungen/2026-04-11_Unterricht-Diagrammbesprechung.md` abgelegt
+
+### Nächste Schritte
+- Klassendiagramm in Visual Paradigm gemäss Feedback korrigieren und neu exportieren
