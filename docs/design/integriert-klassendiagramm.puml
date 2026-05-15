@@ -1,0 +1,148 @@
+@startuml Integriertes Klassendiagramm
+title Integriertes Designmodell – Klassendiagramm (Presentation + Business + Persistence)
+
+skinparam classAttributeIconSize 0
+hide attributes
+
+package "Presentation Layer" {
+    class ConsoleClient {
+        + start() : void
+        + zeigeMenue() : void
+        + verarbeiteEingabe() : void
+    }
+}
+
+package "Business Layer (Domain)" {
+
+    interface IArbeitsbereichService {
+        + arbeitsbereichErstellen(metadaten : Projektmetadaten, vorlageId : String, ersteller : Benutzer) : Projektarbeitsbereich
+        + arbeitsbereichFinden(id : String) : Projektarbeitsbereich
+        + arbeitsbereicheAuflisten() : List<Projektarbeitsbereich>
+    }
+    interface IVorlagenService {
+        + vorlagenLaden() : List<Projektvorlage>
+        + vorlageFinden(id : String) : Projektvorlage
+    }
+
+    class ArbeitsbereichService
+    class VorlagenService
+
+    class ProjektarbeitsbereichFactory <<Singleton>> {
+        + {static} getInstance() : ProjektarbeitsbereichFactory
+        + erstelle(metadaten : Projektmetadaten, vorlage : Projektvorlage, ersteller : Benutzer) : Projektarbeitsbereich
+    }
+    class ProjektvorlageFactory <<Singleton>> {
+        + {static} getInstance() : ProjektvorlageFactory
+        + erstelleVorlage(typ : VorlagenTyp) : Projektvorlage
+    }
+
+    class NamenskonventionValidator {
+        + bildeName(jahr : Integer, kuerzel : String, name : String) : String
+        + istNameEindeutig(name : String) : Boolean
+    }
+    class BerechtigungsManager {
+        + setzeOwner(arbeitsbereich : Projektarbeitsbereich, benutzer : Benutzer) : Berechtigung
+    }
+
+    interface IProjektarbeitsbereichRepository <<Repository>> {
+        + findById(id : String) : Projektarbeitsbereich
+        + findAll() : List<Projektarbeitsbereich>
+        + save(arbeitsbereich : Projektarbeitsbereich) : Projektarbeitsbereich
+        + update(arbeitsbereich : Projektarbeitsbereich) : Boolean
+        + delete(id : String) : Boolean
+    }
+    interface IProjektvorlageRepository <<Repository>> {
+        + findById(id : String) : Projektvorlage
+        + findAll() : List<Projektvorlage>
+    }
+    interface IBenutzerRepository <<Repository>> {
+        + findById(id : String) : Benutzer
+        + findByMail(mail : String) : Benutzer
+    }
+    interface IAuditLogRepository <<Repository>> {
+        + save(eintrag : AuditLogEintrag) : Boolean
+        + findByArbeitsbereich(arbeitsbereichId : String) : List<AuditLogEintrag>
+    }
+
+    class Projektarbeitsbereich
+    class Projektmetadaten
+    abstract class Projektvorlage
+    class StandardVorlage
+    class KundenprojektVorlage
+    class InternVorlage
+    class Ordner
+    class Dokumentvorlage
+    class Benutzer
+    class Berechtigung
+    class AuditLogEintrag
+}
+
+package "Persistence Layer (DataAccess)" {
+
+    interface IDataAccess <<Singleton>> {
+        + connect() : void
+        + disconnect() : void
+        + read(entity : String, id : String) : Object
+        + readAll(entity : String) : List<Object>
+        + create(entity : String, data : Object) : String
+        + update(entity : String, id : String, data : Object) : Boolean
+        + delete(entity : String, id : String) : Boolean
+    }
+    class SharePointDataAccess <<Singleton>> {
+        + {static} getInstance() : SharePointDataAccess
+    }
+    class ProjektarbeitsbereichRepository
+    class ProjektvorlageRepository
+    class BenutzerRepository
+    class AuditLogRepository
+}
+
+' Vererbung / Realisierung
+ArbeitsbereichService ..|> IArbeitsbereichService
+VorlagenService ..|> IVorlagenService
+
+ProjektarbeitsbereichRepository ..|> IProjektarbeitsbereichRepository
+ProjektvorlageRepository ..|> IProjektvorlageRepository
+BenutzerRepository ..|> IBenutzerRepository
+AuditLogRepository ..|> IAuditLogRepository
+SharePointDataAccess ..|> IDataAccess
+
+StandardVorlage --|> Projektvorlage
+KundenprojektVorlage --|> Projektvorlage
+InternVorlage --|> Projektvorlage
+
+' Presentation -> Business
+ConsoleClient --> IArbeitsbereichService
+ConsoleClient --> IVorlagenService
+
+' Business interne Abhängigkeiten
+ArbeitsbereichService --> IProjektarbeitsbereichRepository
+ArbeitsbereichService --> IBenutzerRepository
+ArbeitsbereichService --> IAuditLogRepository
+ArbeitsbereichService --> IVorlagenService
+ArbeitsbereichService --> ProjektarbeitsbereichFactory
+ArbeitsbereichService --> NamenskonventionValidator
+ArbeitsbereichService --> BerechtigungsManager
+VorlagenService --> IProjektvorlageRepository
+VorlagenService --> ProjektvorlageFactory
+
+ProjektarbeitsbereichFactory ..> Projektarbeitsbereich : <<create>>
+ProjektvorlageFactory ..> Projektvorlage : <<create>>
+
+' Business -> Persistence (Schnittstellen-Realisierung erfolgt in Persistence Layer)
+ProjektarbeitsbereichRepository --> IDataAccess
+ProjektvorlageRepository --> IDataAccess
+BenutzerRepository --> IDataAccess
+AuditLogRepository --> IDataAccess
+
+' Domain-Assoziationen
+Projektarbeitsbereich "1" *-- "1" Projektmetadaten
+Projektarbeitsbereich "1" *-- "0..*" AuditLogEintrag
+Projektarbeitsbereich "1" *-- "0..*" Berechtigung
+Projektarbeitsbereich "0..*" --> "1" Projektvorlage
+Projektarbeitsbereich "0..*" --> "1" Benutzer
+Projektvorlage "1" *-- "1..*" Ordner
+Projektvorlage "1" *-- "0..*" Dokumentvorlage
+Berechtigung "0..*" --> "1" Benutzer
+
+@enduml

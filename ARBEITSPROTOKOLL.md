@@ -129,3 +129,44 @@ Dieses Protokoll dokumentiert alle Arbeitsschritte und Fortschritte im Projektve
 
 ### Nächste Schritte
 - Klassendiagramm in Visual Paradigm gemäss Feedback korrigieren und neu exportieren
+
+---
+
+## 2026-05-15
+
+**Teilnehmer:** Benjamin
+**Dauer:** ca. 2.5h
+
+### Erledigtes
+
+**Aufgabe 4 – Objektorientiertes Design (OOD)**
+- Aufgabenstellung `projektarbeit_aufgabe_4.pdf` gesichtet (Auftrag 1–5, max. 39 Punkte)
+- Architektur-Vorgabe übernommen: logische 3-Schichtenarchitektur (Clean Architecture) mit `ConsoleClient` → Domain → `DataAccess`
+- Neuer Ordner `docs/design/` angelegt; Hauptdokument `aufgabe-4-ood.md` mit Annahmen, Pattern-Einsatz, allen 5 Aufträgen und Glossar verfasst
+
+**Designmodelle (Auftrag 1 + 2)**
+- Persistence-Schicht: `persistence-schicht.puml` (Repository-Implementierungen + `IDataAccess`/`SharePointDataAccess` als Singleton)
+- Business-Schicht: `business-schicht.puml` mit:
+  - Domain Services: `IArbeitsbereichService`/`ArbeitsbereichService`, `IVorlagenService`/`VorlagenService`
+  - Domain Components: `NamenskonventionValidator`, `BerechtigungsManager`
+  - Factories (Singleton): `ProjektarbeitsbereichFactory`, `ProjektvorlageFactory`
+  - Repository-Schnittstellen (Definition in Business)
+  - Domain Objects aus OOA inkl. Vererbung `Projektvorlage` → 3 konkrete Vorlagen
+- Pflicht-Patterns Singleton / Factory / Repository sind in Stereotypen markiert; Methoden mit Rückgabe-/Parametertypen, keine Attribute
+
+**Integriertes Designmodell (Auftrag 3)**
+- `integriert-komponentendiagramm.puml`: Komponenten + Schnittstellen-Anbindung Presentation → Business → Persistence
+- `integriert-klassendiagramm.puml`: alle Klassen/Schnittstellen aus allen 3 Schichten in einem Diagramm
+
+**Sequenzdiagramm (Auftrag 4)**
+- `sequenzdiagramm-fa01.puml`: Normalablauf FA01 (Projektarbeitsbereich erstellen)
+- Überprüfung dokumentiert: Reihenfolge `Repository.save` vor `AuditLog.save` ist verbindlich
+- Keine zusätzlichen Designklassen nötig
+
+**Glossar (Auftrag 5)**
+- Verantwortlichkeiten aller Schnittstellen und Klassen aus allen 3 Schichten beschrieben (im Hauptdokument)
+
+### Nächste Schritte
+- Diagramme in Visual Paradigm importieren und als PNG nach `docs/design/` exportieren
+- Dennis: Gegenlesen, ergänzen, Patterns kritisch prüfen
+- Rückmeldungen des Dozenten einarbeiten und im Hauptdokument protokollieren

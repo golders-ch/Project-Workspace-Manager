@@ -1,0 +1,72 @@
+@startuml Integriertes Komponentendiagramm
+title Integriertes Designmodell – Komponentendiagramm (Clean Architecture)
+
+skinparam componentStyle rectangle
+
+package "Presentation Layer" {
+    [ConsoleClient] as PRES
+}
+
+package "Business Layer (Domain)" {
+    [ArbeitsbereichService] as SVC_AB
+    [VorlagenService] as SVC_VL
+    [ProjektarbeitsbereichFactory] as FAC_AB
+    [ProjektvorlageFactory] as FAC_VL
+    interface IArbeitsbereichService as IAS
+    interface IVorlagenService as IVS
+    interface IProjektarbeitsbereichRepository as IPAR
+    interface IProjektvorlageRepository as IPVR
+    interface IBenutzerRepository as IBR
+    interface IAuditLogRepository as IAR
+}
+
+package "Persistence Layer (DataAccess)" {
+    [ProjektarbeitsbereichRepository] as REPO_AB
+    [ProjektvorlageRepository] as REPO_VL
+    [BenutzerRepository] as REPO_B
+    [AuditLogRepository] as REPO_AL
+    [SharePointDataAccess] as DA
+    interface IDataAccess as IDA
+}
+
+' Presentation -> Business
+PRES ..> IAS : <<use>>
+PRES ..> IVS : <<use>>
+IAS - SVC_AB
+IVS - SVC_VL
+
+' Business -> Persistence (über Schnittstellen)
+SVC_AB ..> IPAR : <<use>>
+SVC_AB ..> IBR : <<use>>
+SVC_AB ..> IAR : <<use>>
+SVC_VL ..> IPVR : <<use>>
+
+IPAR - REPO_AB
+IPVR - REPO_VL
+IBR  - REPO_B
+IAR  - REPO_AL
+
+' Repositories nutzen DataAccess
+REPO_AB ..> IDA : <<use>>
+REPO_VL ..> IDA : <<use>>
+REPO_B  ..> IDA : <<use>>
+REPO_AL ..> IDA : <<use>>
+IDA - DA
+
+' Factories werden im Business Layer verwendet
+SVC_AB ..> FAC_AB : <<use>>
+SVC_VL ..> FAC_VL : <<use>>
+
+note right of PRES
+- ruft Domain-Services über
+  Schnittstellen
+- zeigt Domain-Objekte
+  auf der Konsole
+end note
+
+note right of DA
+CRUD auf SharePoint
+(via Microsoft Graph API)
+end note
+
+@enduml

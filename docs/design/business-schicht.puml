@@ -1,0 +1,136 @@
+@startuml Business-Schicht
+title Designmodell Business-Schicht – Project-Workspace-Manager (FA01, FA02)
+
+skinparam classAttributeIconSize 0
+hide attributes
+
+package "Business Layer (Domain)" {
+
+    ' --- Domain Services (Schnittstellen + Implementierungen) ---
+    interface IArbeitsbereichService {
+        + arbeitsbereichErstellen(metadaten : Projektmetadaten, vorlageId : String, ersteller : Benutzer) : Projektarbeitsbereich
+        + arbeitsbereichFinden(id : String) : Projektarbeitsbereich
+        + arbeitsbereicheAuflisten() : List<Projektarbeitsbereich>
+    }
+
+    interface IVorlagenService {
+        + vorlagenLaden() : List<Projektvorlage>
+        + vorlageFinden(id : String) : Projektvorlage
+    }
+
+    class ArbeitsbereichService {
+        + arbeitsbereichErstellen(metadaten : Projektmetadaten, vorlageId : String, ersteller : Benutzer) : Projektarbeitsbereich
+        + arbeitsbereichFinden(id : String) : Projektarbeitsbereich
+        + arbeitsbereicheAuflisten() : List<Projektarbeitsbereich>
+    }
+
+    class VorlagenService {
+        + vorlagenLaden() : List<Projektvorlage>
+        + vorlageFinden(id : String) : Projektvorlage
+    }
+
+    ' --- Domain Components ---
+    class NamenskonventionValidator {
+        + bildeName(jahr : Integer, kuerzel : String, name : String) : String
+        + istNameEindeutig(name : String) : Boolean
+    }
+
+    class BerechtigungsManager {
+        + setzeOwner(arbeitsbereich : Projektarbeitsbereich, benutzer : Benutzer) : Berechtigung
+        + fuegeBerechtigungHinzu(arbeitsbereich : Projektarbeitsbereich, benutzer : Benutzer, rolle : BenutzerRolle) : Berechtigung
+    }
+
+    ' --- Factories (Singleton) ---
+    class ProjektarbeitsbereichFactory <<Singleton>> {
+        - {static} instance : ProjektarbeitsbereichFactory
+        + {static} getInstance() : ProjektarbeitsbereichFactory
+        + erstelle(metadaten : Projektmetadaten, vorlage : Projektvorlage, ersteller : Benutzer) : Projektarbeitsbereich
+    }
+
+    class ProjektvorlageFactory <<Singleton>> {
+        - {static} instance : ProjektvorlageFactory
+        + {static} getInstance() : ProjektvorlageFactory
+        + erstelleVorlage(typ : VorlagenTyp) : Projektvorlage
+    }
+
+    ' --- Repository-Schnittstellen (Definition liegt in der Business-Schicht!) ---
+    interface IProjektarbeitsbereichRepository <<Repository>> {
+        + findById(id : String) : Projektarbeitsbereich
+        + findAll() : List<Projektarbeitsbereich>
+        + save(arbeitsbereich : Projektarbeitsbereich) : Projektarbeitsbereich
+        + update(arbeitsbereich : Projektarbeitsbereich) : Boolean
+        + delete(id : String) : Boolean
+    }
+
+    interface IProjektvorlageRepository <<Repository>> {
+        + findById(id : String) : Projektvorlage
+        + findAll() : List<Projektvorlage>
+    }
+
+    interface IBenutzerRepository <<Repository>> {
+        + findById(id : String) : Benutzer
+        + findByMail(mail : String) : Benutzer
+    }
+
+    interface IAuditLogRepository <<Repository>> {
+        + save(eintrag : AuditLogEintrag) : Boolean
+        + findByArbeitsbereich(arbeitsbereichId : String) : List<AuditLogEintrag>
+    }
+
+    ' --- Domain Objects (aus OOA) ---
+    class Projektarbeitsbereich
+    class Projektmetadaten
+    abstract class Projektvorlage
+    class StandardVorlage
+    class KundenprojektVorlage
+    class InternVorlage
+    class Ordner
+    class Dokumentvorlage
+    class Benutzer
+    class Berechtigung
+    class AuditLogEintrag
+
+    enum VorlagenTyp {
+        STANDARD
+        KUNDENPROJEKT
+        INTERN
+    }
+    enum BenutzerRolle {
+        OWNER
+        MEMBER
+        VISITOR
+    }
+}
+
+' --- Beziehungen ---
+ArbeitsbereichService ..|> IArbeitsbereichService
+VorlagenService ..|> IVorlagenService
+
+ArbeitsbereichService --> IProjektarbeitsbereichRepository : nutzt
+ArbeitsbereichService --> IBenutzerRepository : nutzt
+ArbeitsbereichService --> IAuditLogRepository : nutzt
+ArbeitsbereichService --> IVorlagenService : nutzt
+ArbeitsbereichService --> ProjektarbeitsbereichFactory : nutzt
+ArbeitsbereichService --> NamenskonventionValidator : nutzt
+ArbeitsbereichService --> BerechtigungsManager : nutzt
+
+VorlagenService --> IProjektvorlageRepository : nutzt
+VorlagenService --> ProjektvorlageFactory : nutzt
+
+ProjektarbeitsbereichFactory ..> Projektarbeitsbereich : erzeugt
+ProjektvorlageFactory ..> Projektvorlage : erzeugt
+
+StandardVorlage --|> Projektvorlage
+KundenprojektVorlage --|> Projektvorlage
+InternVorlage --|> Projektvorlage
+
+Projektarbeitsbereich "1" *-- "1" Projektmetadaten
+Projektarbeitsbereich "1" *-- "0..*" AuditLogEintrag
+Projektarbeitsbereich "1" *-- "0..*" Berechtigung
+Projektarbeitsbereich "0..*" --> "1" Projektvorlage : basiert auf
+Projektarbeitsbereich "0..*" --> "1" Benutzer : erstellt von
+Projektvorlage "1" *-- "1..*" Ordner
+Projektvorlage "1" *-- "0..*" Dokumentvorlage
+Berechtigung "0..*" --> "1" Benutzer
+
+@enduml

@@ -1,0 +1,89 @@
+@startuml Persistence-Schicht
+title Designmodell Persistence-Schicht – Project-Workspace-Manager (FA01, FA02)
+
+skinparam classAttributeIconSize 0
+hide attributes
+
+package "Persistence Layer (DataAccess)" {
+
+    interface IDataAccess <<Singleton>> {
+        + connect() : void
+        + disconnect() : void
+        + read(entity : String, id : String) : Object
+        + readAll(entity : String) : List<Object>
+        + create(entity : String, data : Object) : String
+        + update(entity : String, id : String, data : Object) : Boolean
+        + delete(entity : String, id : String) : Boolean
+    }
+
+    class SharePointDataAccess <<Singleton>> {
+        - {static} instance : SharePointDataAccess
+        + {static} getInstance() : SharePointDataAccess
+        + connect() : void
+        + disconnect() : void
+        + read(entity : String, id : String) : Object
+        + readAll(entity : String) : List<Object>
+        + create(entity : String, data : Object) : String
+        + update(entity : String, id : String, data : Object) : Boolean
+        + delete(entity : String, id : String) : Boolean
+    }
+
+    interface IProjektarbeitsbereichRepository <<Repository>> {
+        + findById(id : String) : Projektarbeitsbereich
+        + findAll() : List<Projektarbeitsbereich>
+        + save(arbeitsbereich : Projektarbeitsbereich) : Projektarbeitsbereich
+        + update(arbeitsbereich : Projektarbeitsbereich) : Boolean
+        + delete(id : String) : Boolean
+    }
+
+    interface IProjektvorlageRepository <<Repository>> {
+        + findById(id : String) : Projektvorlage
+        + findAll() : List<Projektvorlage>
+    }
+
+    interface IBenutzerRepository <<Repository>> {
+        + findById(id : String) : Benutzer
+        + findByMail(mail : String) : Benutzer
+    }
+
+    interface IAuditLogRepository <<Repository>> {
+        + save(eintrag : AuditLogEintrag) : Boolean
+        + findByArbeitsbereich(arbeitsbereichId : String) : List<AuditLogEintrag>
+    }
+
+    class ProjektarbeitsbereichRepository {
+        + findById(id : String) : Projektarbeitsbereich
+        + findAll() : List<Projektarbeitsbereich>
+        + save(arbeitsbereich : Projektarbeitsbereich) : Projektarbeitsbereich
+        + update(arbeitsbereich : Projektarbeitsbereich) : Boolean
+        + delete(id : String) : Boolean
+    }
+
+    class ProjektvorlageRepository {
+        + findById(id : String) : Projektvorlage
+        + findAll() : List<Projektvorlage>
+    }
+
+    class BenutzerRepository {
+        + findById(id : String) : Benutzer
+        + findByMail(mail : String) : Benutzer
+    }
+
+    class AuditLogRepository {
+        + save(eintrag : AuditLogEintrag) : Boolean
+        + findByArbeitsbereich(arbeitsbereichId : String) : List<AuditLogEintrag>
+    }
+}
+
+SharePointDataAccess ..|> IDataAccess
+ProjektarbeitsbereichRepository ..|> IProjektarbeitsbereichRepository
+ProjektvorlageRepository ..|> IProjektvorlageRepository
+BenutzerRepository ..|> IBenutzerRepository
+AuditLogRepository ..|> IAuditLogRepository
+
+ProjektarbeitsbereichRepository --> IDataAccess : verwendet
+ProjektvorlageRepository --> IDataAccess : verwendet
+BenutzerRepository --> IDataAccess : verwendet
+AuditLogRepository --> IDataAccess : verwendet
+
+@enduml
