@@ -177,3 +177,25 @@ Dieses Protokoll dokumentiert alle Arbeitsschritte und Fortschritte im Projektve
 - Diagramme in Visual Paradigm nachbauen und als PNG nach `docs/design/` exportieren (für offizielle Abgabe)
 - Dennis: Gegenlesen, ergänzen, Patterns kritisch prüfen
 - Rückmeldungen des Dozenten einarbeiten und im Hauptdokument protokollieren
+
+---
+
+## 2026-05-15 (Besprechung Abend)
+
+**Teilnehmer:** Benjamin Golder, Dennis Eberhard
+**Dauer:** ca. 1h 30min (Remote, Teams)
+
+### Erledigtes
+- Stand Aufgabe 4 (Designdokumentation in `docs/design/`) gemeinsam durchgegangen
+- Vereinfachung der Diagramme als angemessen bestätigt (Pflicht-Patterns, Vererbung, FA01/FA02 bleiben sichtbar)
+- Arbeitsaufteilung für die Visual-Paradigm-Nachzeichnungen festgelegt:
+  - **Dennis:** Business-Schicht-Klassendiagramm, Integriertes Komponentendiagramm
+  - **Benjamin:** Persistence-Schicht-Klassendiagramm, Integriertes Klassendiagramm (bis 2026-05-17)
+  - **Sequenzdiagramm FA01:** zurückgestellt bis nach Unterrichtsblock zum Thema
+- Ausblick auf nächste Etappe (Implementierung) und Umgang mit KI-Unterstützung besprochen
+- Besprechungsprotokoll unter `docs/besprechungen/2026-05-15_Aufgabe4-OOD-Arbeitsaufteilung.md` abgelegt
+
+### Nächste Schritte
+- Benjamin: VP-Diagramme bis 2026-05-17 nachbauen und PNGs in `docs/design/` einchecken
+- Dennis: VP-Diagramme bis zur nächsten Besprechung nachbauen
+- Nächste Synchronisation spätestens 2026-05-22
