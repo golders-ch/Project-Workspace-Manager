@@ -46,7 +46,7 @@ Die `.puml`-Quellen dienen als Vorlage; die finalen Diagramme werden manuell in 
 Es ist unklar, ob der Dozent das Thema „Sequenzdiagramm" zu diesem Zeitpunkt bereits behandelt hat. Wenn er es im nächsten Unterrichtsblock noch zeigt, kann das Diagramm anschliessend ergänzt werden. Aufgabe 4 ist dadurch nicht blockiert – die anderen vier Diagramme sind die Hauptarbeit.
 
 ### Implementierung – Ausblick
-Nach Abschluss von Aufgabe 4 ist die Implementierung die nächste Etappe. KI-Unterstützung (KI-Tool / Copilot) wird dort sehr hilfreich sein, ist aber gleichzeitig eine „fiese Abkürzung": Verständnis und Kontrolle über den Code müssen erhalten bleiben, sonst entstehen später unauffindbare Probleme.
+Nach Abschluss von Aufgabe 4 ist die Implementierung die nächste Etappe. KI-Unterstützung (Copilot) wird dort sehr hilfreich sein, ist aber gleichzeitig eine „fiese Abkürzung": Verständnis und Kontrolle über den Code müssen erhalten bleiben, sonst entstehen später unauffindbare Probleme.
 
 ---
 

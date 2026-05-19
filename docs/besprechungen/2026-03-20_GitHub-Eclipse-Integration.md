@@ -44,10 +44,10 @@
 - Diskussion über Views, Wikis und Roadmap-Funktionen in GitHub
 
 ### KI-Tools im Projektworkflow
-- **KI-Tool** wird als Assistent für Dokumentation und Entscheidungsprotokolle eingesetzt
-- Benjamin erklärt Dennis die Nutzung von KI-Tool für Projektarbeit
-- Hinweis: Im Geschäft von Dennis sind nur Copilot und GPT für Textverbesserung erlaubt — KI-Tool nicht
-- Datenschutzfrage beim Einsatz von KI-Tool in Unternehmen bleibt offen
+- KI-Assistenten werden für Dokumentation und Entscheidungsprotokolle eingesetzt
+- Benjamin erklärt Dennis die Nutzung von KI-Tools für Projektarbeit
+- Hinweis: Im Geschäft von Dennis sind nur Copilot und GPT für Textverbesserung erlaubt
+- Datenschutzfrage beim Einsatz von KI-Tools in Unternehmen bleibt offen
 
 ---
 
@@ -60,7 +60,7 @@
 | Projektname: «Project Workspace Manager» | — |
 | Commit-Signierung in GitHub deaktiviert | — |
 | Protokolle und ADRs direkt im Repository führen | — |
-| KI-Tool als Dokumentationsassistent einsetzen | — |
+| KI-Assistenten als Dokumentationsunterstützung einsetzen | — |
 | Serientermin für regelmässige Besprechungen einrichten | offen |
 
 ---
@@ -71,5 +71,5 @@
 |---|---|---|
 | Serientermin für Besprechungen einrichten | Benjamin & Dennis | k.A. |
 | Autor-Feld beim Commit in Eclipse konfigurieren | Dennis | k.A. |
-| Datenschutzfrage KI-Tool in Unternehmen klären | Dennis | k.A. |
+| Datenschutzfrage KI-Tools in Unternehmen klären | Dennis | k.A. |
 | KI-Tool-Integration in Projektworkflow definieren | Benjamin | k.A. |

@@ -36,10 +36,10 @@ Definierte Zielgruppen:
 - IT-Abteilung / Compliance
 
 ### Projektdokumentation
-Erarbeitung von Projektbeschreibung, Mission/Vision, Stakeholder-Analyse und Zieldefinitionen. Einsatz von KI-Tools (KI-Tool, Copilot) zur Unterstützung bei Formulierung und Strukturierung. Use-Case-Spezifikationen und Systemkontextdiagramm werden erarbeitet.
+Erarbeitung von Projektbeschreibung, Mission/Vision, Stakeholder-Analyse und Zieldefinitionen. Einsatz von KI-Tools (Copilot, ChatGPT) zur Unterstützung bei Formulierung und Strukturierung. Use-Case-Spezifikationen und Systemkontextdiagramm werden erarbeitet.
 
 ### Einsatz von KI-Tools
-Austausch über Erfahrungen mit KI-Tool, Copilot und anderen KI-Modellen im Projekteinsatz. Diskussion über Chancen (Effizienz, Strukturierung) und Risiken (weniger Eigenleistung, Lerneffekt).
+Austausch über Erfahrungen mit Copilot, ChatGPT und weiteren KI-Modellen im Projekteinsatz. Diskussion über Chancen (Effizienz, Strukturierung) und Risiken (weniger Eigenleistung, Lerneffekt).
 
 ---
 
