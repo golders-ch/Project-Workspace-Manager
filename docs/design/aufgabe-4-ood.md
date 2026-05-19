@@ -106,7 +106,7 @@ Geprüfter Anwendungsfall: **FA01 – Projektarbeitsbereich erstellen** (Normala
 5. Das `IProjektarbeitsbereichRepository` persistiert den Arbeitsbereich; intern delegiert es an `IDataAccess`.
 6. Der erstellte `Projektarbeitsbereich` wird an den `ConsoleClient` zurückgegeben und mit URL/Bestätigung dem Projektmanager angezeigt.
 
-![Sequenzdiagramm FA01](sequenzdiagramm-fa01.png)
+> Das Sequenzdiagramm wird in einer späteren Iteration ergänzt (siehe Besprechungsprotokoll 2026-05-15).
 
 ### Erkenntnisse aus der Überprüfung
 
@@ -165,6 +165,5 @@ Geprüfter Anwendungsfall: **FA01 – Projektarbeitsbereich erstellen** (Normala
 | `business-schicht.png` | UML-Klassendiagramm Business-Schicht |
 | `integriert-klassendiagramm.png` | UML-Klassendiagramm integriert (alle 3 Schichten) |
 | `integriert-komponentendiagramm.png` | UML-Komponentendiagramm integriert |
-| `sequenzdiagramm-fa01.png` | UML-Sequenzdiagramm Normalablauf FA01 |
 
-> Die Diagramme wurden in **Visual Paradigm** modelliert und als PNG exportiert.
+> Die Diagramme wurden in **Visual Paradigm** modelliert und als PNG exportiert. Das Sequenzdiagramm zu FA01 wird in einer späteren Iteration ergänzt.

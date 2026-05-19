@@ -20,6 +20,7 @@ Dieses Protokoll dokumentiert alle Arbeitsschritte und Fortschritte im Projektve
 - Bisherige aus PlantUML generierte PNGs im Repo durch die neuen Visual-Paradigm-Exporte ersetzt
 - Alle `.puml`-Quelldateien in `docs/design/` entfernt (nicht mehr benötigt, da Modellierung jetzt in Visual Paradigm erfolgt)
 - `aufgabe-4-ood.md` angepasst: PlantUML-Quellenhinweise und Dateiübersicht aktualisiert (Modellierungstool nun Visual Paradigm)
+- `sequenzdiagramm-fa01.png` entfernt: Das Sequenzdiagramm wird in einer späteren Iteration ergänzt (siehe Beschluss vom 2026-05-15). Hinweis in `aufgabe-4-ood.md` ergänzt.
 
 ---
 
