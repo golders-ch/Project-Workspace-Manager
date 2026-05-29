@@ -4,6 +4,46 @@ Dieses Protokoll dokumentiert alle Arbeitsschritte und Fortschritte im Projektve
 
 ---
 
+## 2026-05-29
+
+**Teilnehmer:** Benjamin Golder
+**Dauer:** ca. 2h
+
+### Erledigtes
+
+**Aufgabe 5 – Objektorientierte Implementation (Iteration 1)**
+
+- Neues Eclipse-Java-Projekt `prototype-java/` im Repo-Root angelegt
+  - `.project` + `.classpath` mit JRE-21-Container, getrennten Source-Foldern `src/` und `test/`
+  - JUnit Platform Console Standalone 1.10.2 als lokale Lib in `lib/`
+- Java-Packages gemäss Vorgabe Aufgabe 5:
+  - `ch.juve.pwm.presentation`, `ch.juve.pwm.business`, `ch.juve.pwm.persistence`
+  - `ch.juve.pwm.test.business`, `ch.juve.pwm.test.persistence`
+- **Auftrag 1** – Fachliche Klasse: `Projektarbeitsbereich` (FA01, Score 90); Attribute der 1. Iteration: `id` + `name`
+- **Auftrag 2** – Designmodell implementiert:
+  - **Persistence:** `IDataAccess` (Singleton-Vertrag, generische CRUD-Schnittstelle), `MockDataAccess` (in-memory Map, Singleton), `ProjektarbeitsbereichRepository`
+  - **Business:** Domain-Klasse `Projektarbeitsbereich`, `IProjektarbeitsbereichRepository`, `IArbeitsbereichService` + `ArbeitsbereichService`, `ProjektarbeitsbereichFactory` (Singleton, Bill-Pugh-Holder)
+  - **Presentation:** `ConsoleClient` (Konsolen-Ausgabe), `Application` (`main`-Methode, Schichten-Verdrahtung)
+  - Anmerkung: Im Prototyp ersetzt `MockDataAccess` die designseitige `SharePointDataAccess`; Schnittstelle `IDataAccess` bleibt identisch (Vorgabe Mock-DB)
+- **Auftrag 3** – Unit-Tests Persistence-Schicht: 8 JUnit-5-Tests in `ProjektarbeitsbereichRepositoryTest`
+- **Auftrag 4** – Unit-Tests Business-Schicht: 9 JUnit-5-Tests in `ArbeitsbereichServiceTest` (inkl. `FakeRepository` für Isolation gegen Persistence)
+- **Auftrag 5** – Endbenutzertest: `Application.main` erzeugt 4 Projektarbeitsbereiche mit harten Testdaten und gibt sie auf der Konsole aus
+- **Auftrag 6** – Javadoc: Datei-Header für alle Klassen/Schnittstellen, vollständige Methoden-Dokumentation in Schnittstellen und der Factory, zusammengefasste Getter/Setter-Doku; HTML-Doku generiert nach `prototype-java/docs/javadoc/` (Einstieg: `index.html`)
+- `prototype-java/README.md` mit Build-, Test- und Javadoc-Anleitung sowie Eclipse-Import-Anleitung erstellt
+- `.gitignore` für `bin/`, `.settings/`, `docs/javadoc/`
+
+### Verifikation
+- `javac` (JDK 21): 10 Production- + 2 Test-Dateien kompilieren ohne Fehler/Warnungen
+- JUnit Console Launcher: **17/17 Tests grün** (9 Business + 8 Persistence)
+- `Application.main`: Ausgabe der 4 Projektarbeitsbereiche auf der Konsole funktioniert wie spezifiziert
+
+### Nächste Schritte
+- Dennis: Code Review, ggf. zusätzliche Tests/Annahmen ergänzen
+- Mit Dozent in der nächsten Besprechung die Wahl der fachlichen Klasse (`Projektarbeitsbereich`) und der zwei Attribute (`id`, `name`) bestätigen lassen
+- Auftrag 7 (Präsentation): Folien-Struktur und Aufgabenverteilung im nächsten Team-Meeting festlegen
+
+---
+
 ## 2026-05-19
 
 **Teilnehmer:** Benjamin Golder
