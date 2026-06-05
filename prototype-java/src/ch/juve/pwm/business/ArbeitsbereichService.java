@@ -1,10 +1,3 @@
-/*
- * Datei:       ArbeitsbereichService.java
- * Projekt:     Project-Workspace-Manager (Prototyp, Iteration 1)
- * Schicht:     Business
- * Beschreibung: Konkrete Implementierung von IArbeitsbereichService. Orchestriert
- *              Factory und Repository fuer den Normalablauf von FA01.
- */
 package ch.juve.pwm.business;
 
 import java.util.List;

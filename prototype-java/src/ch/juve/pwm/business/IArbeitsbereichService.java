@@ -10,13 +10,6 @@ package ch.juve.pwm.business;
 
 import java.util.List;
 
-/**
- * Service-Schnittstelle fuer den Lebenszyklus eines Projektarbeitsbereichs.
- *
- * <p>Die Implementierung orchestriert Factory (Erzeugung) und Repository
- * (Persistierung) und kapselt damit den Normalablauf von FA01 hinter einer
- * fachlich benannten API.</p>
- */
 public interface IArbeitsbereichService {
 
     /**
