@@ -1,5 +1,5 @@
 package ch.juve.pwm.business;
-//Test 3
+//Test
 import java.util.List;
 
 public class ArbeitsbereichService implements IArbeitsbereichService {
