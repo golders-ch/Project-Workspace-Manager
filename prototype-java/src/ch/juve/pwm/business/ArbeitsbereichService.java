@@ -9,17 +9,6 @@ package ch.juve.pwm.business;
 
 import java.util.List;
 
-/**
- * Standard-Implementierung von {@link IArbeitsbereichService}.
- *
- * <p>Die Klasse haelt den Normalablauf von FA01 zusammen: sie laesst den
- * Arbeitsbereich von der {@link ProjektarbeitsbereichFactory} erzeugen und
- * persistiert ihn anschliessend ueber das {@link IProjektarbeitsbereichRepository}.</p>
- *
- * <p>Das Repository wird per Konstruktor uebergeben (Dependency Injection),
- * damit die Klasse unabhaengig von einer konkreten Persistence-Technologie
- * (SharePoint, Mock-DB, etc.) getestet werden kann.</p>
- */
 public class ArbeitsbereichService implements IArbeitsbereichService {
 
     private final IProjektarbeitsbereichRepository repository;
