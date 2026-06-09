@@ -20,6 +20,9 @@ Ziel: Der Prototyp-Code soll dem im Unterricht behandelten Niveau entsprechen un
 - **`MockDataAccess` vereinfacht:** `synchronized` entfernt (Prototyp ist einthreadig) und `computeIfAbsent(k -> ...)` durch ein einfaches `if (!containsKey)` ersetzt.
 - **Javadoc entschärft:** Fortgeschrittene Fachbegriffe (Bill-Pugh-Idiom, Initialization-on-demand, Dependency-Inversion-Prinzip) durch einfache deutsche Kommentare ersetzt.
 
+**Hilfsmittel-Deklaration ergänzt**
+- Abschnitt «Deklaration der verwendeten Hilfsmittel» mit Eigenständigkeitserklärung und transparenter Offenlegung der KI-Nutzung am Ende der Projektdokumentation ergänzt.
+
 ### Verifikation
 - `javac` (JDK 21): alle Production- + Test-Dateien kompilieren ohne Fehler
 - JUnit Console Launcher: **17/17 Tests weiterhin grün** (9 Business + 8 Persistence)

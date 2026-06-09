@@ -331,3 +331,34 @@ Auftrag 1 hat den Kontext durch Unternehmensbeschreibung, Projektauftrag, Stakeh
 6. **Vollständiger Rollout** – mit begleitenden Schulungen, Kommunikationskampagne und Support-Bereitschaft
 
 Die strukturierte Anforderungsdokumentation ermöglicht agile Entwicklung mit klaren Akzeptanzkriterien für jede User Story. Regelmässige Reviews mit Stakeholdern stellen sicher, dass die Lösung kontinuierlich an Geschäftsbedürfnisse angepasst wird.
+
+---
+
+# Deklaration der verwendeten Hilfsmittel
+
+## Eigenständigkeitserklärung und KI-Nutzung
+
+Wir erklären, dass wir die vorliegende Projektarbeit eigenständig verfasst und alle inhaltlichen und fachlichen Entscheidungen selbst getroffen und verstanden haben. Verwendete Quellen und Hilfsmittel sind nachfolgend offengelegt.
+
+### Eingesetzte Hilfsmittel
+
+| Hilfsmittel | Verwendungszweck |
+|---|---|
+| **Eclipse** | Entwicklungsumgebung für den Java-Prototyp |
+| **Visual Paradigm (Community Edition)** | Erstellung der UML-Diagramme (OOA/OOD) |
+| **GitHub** | Versionskontrolle, Dokumentation und Zusammenarbeit |
+| **KI-Assistenten** (z. B. GitHub Copilot, ChatGPT) | Sprachliche Formulierung und Strukturierung der Dokumentation, Erklärung von Konzepten, Unterstützung beim Programmieren |
+
+### Art und Umfang der KI-Nutzung
+
+KI-Assistenten wurden als **unterstützendes Werkzeug** eingesetzt, vergleichbar mit einem Nachschlagewerk, einer Rechtschreibprüfung oder einer Code-Vervollständigung. Konkret:
+
+- **Dokumentation:** Hilfe bei Formulierung, Gliederung und sprachlicher Überarbeitung von Texten, deren Inhalte von uns stammen.
+- **Analyse und Design:** Unterstützung beim Strukturieren von Überlegungen sowie als Sparringpartner bei Fragen zu UML, Design-Patterns und Architektur.
+- **Implementierung:** Unterstützung beim Schreiben und Erklären von Code. Der Java-Prototyp wurde von uns nachvollzogen, geprüft und auf das im Unterricht behandelte Niveau gebracht.
+
+### Eigenleistung und Verantwortung
+
+Alle fachlichen Inhalte, Modelle und Entscheidungen wurden von uns verstanden, überprüft und verantwortet. KI-generierte Vorschläge wurden kritisch geprüft und nur übernommen, wo sie inhaltlich korrekt und nachvollziehbar waren. Die Verantwortung für die Richtigkeit und Vollständigkeit der Arbeit liegt vollständig bei uns.
+
+*Benjamin Golder, Dennis Eberhard*
