@@ -2,9 +2,8 @@
  * Datei:       MockDataAccess.java
  * Projekt:     Project-Workspace-Manager (Prototyp, Iteration 1)
  * Schicht:     Persistence
- * Beschreibung: In-Memory-Realisierung von IDataAccess fuer den Prototyp.
- *              Ersetzt die spaetere SharePoint-Anbindung durch eine Map-basierte
- *              Mock-Datenbank im Hauptspeicher.
+ * Beschreibung: Umsetzung von IDataAccess fuer den Prototyp. Ersetzt die spaetere
+ *              SharePoint-Anbindung durch eine Mock-Datenbank im Hauptspeicher.
  */
 package ch.juve.pwm.persistence;
 
@@ -14,68 +13,72 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Singleton-Implementierung von {@link IDataAccess} mit Speicherung im Hauptspeicher.
+ * Umsetzung von {@link IDataAccess}, die alle Daten im Hauptspeicher haelt
+ * (Pattern: Singleton).
  *
- * <p>Die interne Struktur ist eine geschachtelte Map:
+ * <p>Die Daten liegen in einer Map pro Entitaet:
  * {@code Map<Entitaet, Map<Id, Objekt>>}.</p>
  *
- * <p>Diese Klasse ersetzt im Prototyp die im Designmodell vorgesehene
- * Klasse {@code SharePointDataAccess}; die Schnittstelle bleibt identisch.</p>
+ * <p>Diese Klasse ersetzt im Prototyp die im Designmodell vorgesehene Klasse
+ * {@code SharePointDataAccess}; die Schnittstelle bleibt gleich.</p>
  */
-public final class MockDataAccess implements IDataAccess {
+public class MockDataAccess implements IDataAccess {
 
-    private static final class Holder {
-        static final MockDataAccess INSTANCE = new MockDataAccess();
-    }
+    // Die einzige Instanz (Singleton). Wird beim ersten Aufruf erzeugt.
+    private static MockDataAccess instance;
 
+    // Aeussere Map: Entitaet -> (innere Map: Id -> Objekt)
     private final Map<String, Map<String, Object>> daten = new HashMap<>();
 
+    // Konstruktor ist privat, damit von aussen keine Instanz erzeugt werden kann.
     private MockDataAccess() {
-        // Konstruktor ist private, um externe Instanziierung zu verhindern.
     }
 
     /**
-     * Liefert die zentrale Instanz.
+     * Liefert die einzige Instanz und erzeugt sie beim ersten Aufruf.
      *
-     * @return die einzige Instanz
+     * @return die Instanz
      */
     public static MockDataAccess getInstance() {
-        return Holder.INSTANCE;
+        if (instance == null) {
+            instance = new MockDataAccess();
+        }
+        return instance;
     }
 
     @Override
-    public synchronized void speichern(String entitaet, String id, Object objekt) {
+    public void speichern(String entitaet, String id, Object objekt) {
         if (entitaet == null || id == null || objekt == null) {
             throw new IllegalArgumentException("entitaet, id und objekt duerfen nicht null sein");
         }
-        daten.computeIfAbsent(entitaet, k -> new HashMap<>()).put(id, objekt);
+        // Innere Map fuer die Entitaet holen oder neu anlegen.
+        if (!daten.containsKey(entitaet)) {
+            daten.put(entitaet, new HashMap<>());
+        }
+        daten.get(entitaet).put(id, objekt);
     }
 
     @Override
-    public synchronized <T> T lesen(String entitaet, String id, Class<T> typ) {
+    public Object lesen(String entitaet, String id) {
         Map<String, Object> bereich = daten.get(entitaet);
         if (bereich == null) {
             return null;
         }
-        Object treffer = bereich.get(id);
-        return treffer == null ? null : typ.cast(treffer);
+        return bereich.get(id);
     }
 
     @Override
-    public synchronized <T> List<T> alleLesen(String entitaet, Class<T> typ) {
+    public List<Object> alleLesen(String entitaet) {
+        List<Object> ergebnis = new ArrayList<>();
         Map<String, Object> bereich = daten.get(entitaet);
-        if (bereich == null) {
-            return new ArrayList<>();
-        }
-        List<T> ergebnis = new ArrayList<>(bereich.size());
-        for (Object o : bereich.values()) {
-            ergebnis.add(typ.cast(o));
+        if (bereich != null) {
+            ergebnis.addAll(bereich.values());
         }
         return ergebnis;
     }
 
     @Override
-    public synchronized boolean loeschen(String entitaet, String id) {
+    public boolean loeschen(String entitaet, String id) {
         Map<String, Object> bereich = daten.get(entitaet);
         if (bereich == null) {
             return false;
@@ -84,7 +87,7 @@ public final class MockDataAccess implements IDataAccess {
     }
 
     @Override
-    public synchronized void zuruecksetzen() {
+    public void zuruecksetzen() {
         daten.clear();
     }
 }

@@ -2,51 +2,47 @@
  * Datei:       ProjektarbeitsbereichFactory.java
  * Projekt:     Project-Workspace-Manager (Prototyp, Iteration 1)
  * Schicht:     Business
- * Beschreibung: Singleton-Factory zur Erzeugung von Projektarbeitsbereich-Objekten.
- *              Buendelt die Initialisierungs-Defaults an einer Stelle und vermeidet,
- *              dass diese Logik mehrfach im Service-Code auftaucht.
+ * Beschreibung: Factory zum Erzeugen von Projektarbeitsbereich-Objekten.
+ *              Sammelt die Erzeugungslogik an einer Stelle, damit sie nicht
+ *              mehrfach im Service-Code steht.
  */
 package ch.juve.pwm.business;
 
 /**
- * Singleton-Factory fuer {@link Projektarbeitsbereich}.
+ * Factory fuer {@link Projektarbeitsbereich} (Pattern: Singleton + Factory).
  *
- * <p>Pattern: <em>Singleton</em> (nur eine Instanz) kombiniert mit <em>Factory Method</em>
- * (kapselt die Konstruktion). In spaeteren Iterationen werden hier weitere Defaults
- * (Initialstatus, Erstellungsdatum, URL-Schema) gesetzt.</p>
- *
- * <p>Thread-Safety: Initialisierung erfolgt thread-sicher ueber den Class-Loader
- * (Initialization-on-demand Holder-Idiom).</p>
+ * <p>Es gibt nur eine Instanz, die ueber {@link #getInstance()} geholt wird.
+ * In spaeteren Iterationen werden hier weitere Vorgabewerte gesetzt
+ * (z.B. Initialstatus, Erstellungsdatum).</p>
  */
-public final class ProjektarbeitsbereichFactory {
+public class ProjektarbeitsbereichFactory {
 
-    /**
-     * Holder-Klasse fuer das lazy-initialisierte Singleton (Bill-Pugh-Idiom).
-     */
-    private static final class Holder {
-        static final ProjektarbeitsbereichFactory INSTANCE = new ProjektarbeitsbereichFactory();
-    }
+    // Die einzige Instanz (Singleton). Wird beim ersten Aufruf erzeugt.
+    private static ProjektarbeitsbereichFactory instance;
 
+    // Konstruktor ist privat, damit von aussen keine Instanz erzeugt werden kann.
     private ProjektarbeitsbereichFactory() {
-        // Konstruktor ist private, um externe Instanziierung zu verhindern.
     }
 
     /**
-     * Liefert die zentrale Factory-Instanz.
+     * Liefert die einzige Factory-Instanz und erzeugt sie beim ersten Aufruf.
      *
-     * @return die einzige Factory-Instanz
+     * @return die Factory-Instanz
      */
     public static ProjektarbeitsbereichFactory getInstance() {
-        return Holder.INSTANCE;
+        if (instance == null) {
+            instance = new ProjektarbeitsbereichFactory();
+        }
+        return instance;
     }
 
     /**
-     * Erzeugt einen neuen Projektarbeitsbereich mit den angegebenen Attributen.
+     * Erzeugt einen neuen Projektarbeitsbereich.
      *
      * @param id   eindeutiger Bezeichner
      * @param name Name gemaess Namenskonvention
-     * @return neuer, noch nicht persistierter Arbeitsbereich
-     * @throws IllegalArgumentException falls {@code id} oder {@code name} leer/null sind
+     * @return neuer, noch nicht gespeicherter Arbeitsbereich
+     * @throws IllegalArgumentException falls id oder name leer/null sind
      */
     public Projektarbeitsbereich erstelle(String id, String name) {
         if (id == null || id.isBlank()) {

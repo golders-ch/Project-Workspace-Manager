@@ -3,8 +3,8 @@
  * Projekt:     Project-Workspace-Manager (Prototyp, Iteration 1)
  * Schicht:     Business (Schnittstelle, Realisierung in Persistence)
  * Beschreibung: Fachliche Repository-Schnittstelle fuer den Projektarbeitsbereich.
- *              Nach dem Dependency-Inversion-Prinzip in der Business-Schicht definiert;
- *              die konkrete Implementierung liegt in der Persistence-Schicht.
+ *              Wird in der Business-Schicht definiert; die konkrete Implementierung
+ *              liegt in der Persistence-Schicht.
  */
 package ch.juve.pwm.business;
 

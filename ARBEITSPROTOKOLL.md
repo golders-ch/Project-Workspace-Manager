@@ -4,6 +4,33 @@ Dieses Protokoll dokumentiert alle Arbeitsschritte und Fortschritte im Projektve
 
 ---
 
+## 2026-06-09
+
+**Teilnehmer:** Benjamin Golder
+**Dauer:** ca. 1h
+
+### Erledigtes
+
+**Code-Vereinfachung Java-Prototyp (Iteration 1)**
+
+Ziel: Der Prototyp-Code soll dem im Unterricht behandelten Niveau entsprechen und nachvollziehbar selbst geschrieben wirken. Die im OOD-Modell (Aufgabe 4) vorgegebene Architektur (3 Schichten, Singleton, Factory, Repository) bleibt unverändert – nur der Implementierungsstil wurde verschlankt.
+
+- **Singletons vereinfacht:** `ProjektarbeitsbereichFactory` und `MockDataAccess` nutzen statt des Bill-Pugh-Holder-Idioms nun einen einfachen Lazy-Singleton (`if (instance == null) ...`).
+- **`IDataAccess` entgenerisiert:** Die generischen Class-Token-Methoden (`<T> T lesen(..., Class<T>)`) wurden durch einfache `Object`-Rückgaben ersetzt; der Cast auf `Projektarbeitsbereich` erfolgt nun explizit im `ProjektarbeitsbereichRepository`.
+- **`MockDataAccess` vereinfacht:** `synchronized` entfernt (Prototyp ist einthreadig) und `computeIfAbsent(k -> ...)` durch ein einfaches `if (!containsKey)` ersetzt.
+- **Javadoc entschärft:** Fortgeschrittene Fachbegriffe (Bill-Pugh-Idiom, Initialization-on-demand, Dependency-Inversion-Prinzip) durch einfache deutsche Kommentare ersetzt.
+
+### Verifikation
+- `javac` (JDK 21): alle Production- + Test-Dateien kompilieren ohne Fehler
+- JUnit Console Launcher: **17/17 Tests weiterhin grün** (9 Business + 8 Persistence)
+- `Application.main`: Endbenutzertest gibt die 4 Projektarbeitsbereiche unverändert korrekt aus
+
+### Nächste Schritte
+- Dennis: Gegenlesen, ob der vereinfachte Stil verständlich ist
+- Code ↔ UML-Modell beim nächsten Mal kurz gegenprüfen (Patterns sind unverändert vorhanden)
+
+---
+
 ## 2026-05-29
 
 **Teilnehmer:** Benjamin Golder

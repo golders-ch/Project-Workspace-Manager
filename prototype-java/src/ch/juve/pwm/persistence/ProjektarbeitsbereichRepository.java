@@ -9,6 +9,7 @@
  */
 package ch.juve.pwm.persistence;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ch.juve.pwm.business.IProjektarbeitsbereichRepository;
@@ -49,11 +50,18 @@ public class ProjektarbeitsbereichRepository implements IProjektarbeitsbereichRe
 
     @Override
     public Projektarbeitsbereich finden(String id) {
-        return dataAccess.lesen(ENTITAET, id, Projektarbeitsbereich.class);
+        // IDataAccess liefert Object zurueck, deshalb hier der Cast auf unseren Typ.
+        Object treffer = dataAccess.lesen(ENTITAET, id);
+        return (Projektarbeitsbereich) treffer;
     }
 
     @Override
     public List<Projektarbeitsbereich> alleLesen() {
-        return dataAccess.alleLesen(ENTITAET, Projektarbeitsbereich.class);
+        // Object-Liste in eine typisierte Liste umwandeln.
+        List<Projektarbeitsbereich> ergebnis = new ArrayList<>();
+        for (Object o : dataAccess.alleLesen(ENTITAET)) {
+            ergebnis.add((Projektarbeitsbereich) o);
+        }
+        return ergebnis;
     }
 }
