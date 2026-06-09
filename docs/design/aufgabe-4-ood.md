@@ -26,7 +26,7 @@ Die technische Abhängigkeitsrichtung ist strikt: **Presentation → Business �
 
 - Die Authentifizierung des Projektmanagers über Microsoft Entra ID ist vorgelagert; im Designmodell wird ein bereits authentifizierter Benutzer-Kontext vorausgesetzt und ist deshalb nicht modelliert.
 - Persistenz erfolgt in SharePoint Online (Listen + Site-Provisionierung) über die Microsoft Graph API. Im Designmodell wird dies als generische `IDataAccess`-Schnittstelle gekapselt, damit die konkrete Technologie austauschbar bleibt.
-- Für die 1. Iteration genügt eine konsolenbasierte Presentation-Schicht (`ConsoleClient`). Eine zukünftige Power-App-Oberfläche kann die gleichen Business-Schnittstellen nutzen.
+- Für die 1. Iteration genügt eine konsolenbasierte Presentation-Schicht (`ConsoleClient`). Eine zukünftige grafische Java-Oberfläche kann die gleichen Business-Schnittstellen nutzen.
 - Das Designmodell beschränkt sich auf die für FA01/FA02 zwingend benötigten Designklassen. Im Fachklassenmodell (Aufgabe 3) modellierte Objekte wie `Projektmetadaten`, `Ordner`, `Dokumentvorlage`, `Berechtigung` und `AuditLogEintrag` sind Eigenschaften des `Projektarbeitsbereichs` bzw. der `Projektvorlage` und werden in späteren Iterationen ergänzt.
 - Die `Projektvorlage`-Definitionen (Standard / Kundenprojekt / Intern) sind statisch konfiguriert; ihre Persistierung beschränkt sich auf Lesen (deshalb keine `save`/`update`-Operationen am Vorlagen-Repository).
 

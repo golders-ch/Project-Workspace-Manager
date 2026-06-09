@@ -3,6 +3,6 @@
 Enthält Konfigurationsvorlagen und -dateien für die Projektumgebung.
 
 ## Enthaltene Konfigurationen
-- Umgebungsvariablen (Power Platform)
+- Umgebungsvariablen (Microsoft Graph API-Zugang)
 - App-Registrierung (Microsoft Entra ID)
 - SharePoint-Berechtigungsvorlagen

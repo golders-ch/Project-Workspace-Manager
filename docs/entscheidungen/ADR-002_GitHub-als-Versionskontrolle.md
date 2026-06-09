@@ -17,5 +17,5 @@ Wir verwenden **GitHub** als zentrale Plattform für Versionskontrolle, Dokument
 - Ermöglicht nachvollziehbare Änderungshistorie für Dokumentation und Artefakte
 
 ## Konsequenzen
-- Power Apps und Power Automate Artefakte müssen manuell exportiert und ins Repository eingecheckt werden (kein nativer Git-Connector)
+- Der gesamte Java-Quellcode und die Dokumentation werden direkt im Repository versioniert; Git ist dafür das native Werkzeug
 - Alle Teammitglieder benötigen einen GitHub-Account

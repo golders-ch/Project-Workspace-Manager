@@ -4,7 +4,7 @@ M365 Self-Service-Anwendung zur automatisierten Verwaltung von SharePoint-Projek
 
 ## Projektbeschreibung
 
-Der Project-Workspace-Manager ermöglicht Projektmanagern die eigenständige Erstellung standardisierter SharePoint-Projektarbeitsbereiche ohne IT-Eingriff. Die Lösung basiert auf Microsoft Power Platform (Power Apps + Power Automate) und ist vollständig in Microsoft 365 integriert.
+Der Project-Workspace-Manager ermöglicht Projektmanagern die eigenständige Erstellung standardisierter SharePoint-Projektarbeitsbereiche ohne IT-Eingriff. Die Lösung wird als Java-Anwendung umgesetzt, die über die Microsoft Graph API auf Microsoft 365 (SharePoint Online) zugreift.
 
 ## Ordnerstruktur
 
@@ -17,12 +17,11 @@ Project-Workspace-Manager/
 │   ├── besprechungen/             # Besprechungsprotokolle
 │   └── projektumgebung/           # Projektumgebung (Aufgabe 2)
 │
-├── src/                           # Quellcode & Entwicklungsartefakte
-│   ├── power-apps/                # Power Apps Canvas App Exporte (.msapp)
-│   ├── power-automate/            # Power Automate Flow Exporte (.zip)
-│   └── sharepoint/                # SharePoint Templates & Skripte
+├── prototype-java/                # Java-Prototyp (OOD-Implementierung, Iteration 1)
+│
+├── src/                           # Backend-Definitionen
+│   └── sharepoint/                # SharePoint-Backend (von der Java-App via Graph bereitgestellt)
 │       ├── templates/             # Site Templates (.xml)
-│       ├── scripts/               # PowerShell-Skripte
 │       └── listen/                # Listen-Schemas (JSON)
 │
 ├── installation/                  # Installation & Setup
@@ -40,8 +39,7 @@ Project-Workspace-Manager/
 
 | Komponente | Technologie |
 |---|---|
-| Frontend / UI | Microsoft Power Apps (Canvas App) |
-| Automatisierung | Microsoft Power Automate |
+| Anwendung / Logik | Java (Konsolen-Anwendung, später grafische Oberfläche) |
 | Backend / Storage | SharePoint Online |
 | API | Microsoft Graph API |
 | Authentifizierung | Microsoft Entra ID (Azure AD) |

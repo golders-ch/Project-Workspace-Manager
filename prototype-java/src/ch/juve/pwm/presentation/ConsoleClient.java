@@ -18,9 +18,9 @@ import ch.juve.pwm.business.Projektarbeitsbereich;
  *
  * <p>Die Klasse ist bewusst schlank: sie ruft den
  * {@link IArbeitsbereichService} auf und formatiert das Ergebnis fuer die
- * Konsole. In spaeteren Iterationen kann diese Schicht durch eine Power-App
- * ersetzt werden, ohne dass Business- oder Persistence-Schicht angepasst
- * werden muessten.</p>
+ * Konsole. In spaeteren Iterationen kann diese Schicht durch eine grafische
+ * Java-Oberflaeche ersetzt werden, ohne dass Business- oder Persistence-Schicht
+ * angepasst werden muessten.</p>
  */
 public class ConsoleClient {
 

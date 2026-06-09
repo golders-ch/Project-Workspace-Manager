@@ -149,7 +149,7 @@ Der zweite Auftrag fokussiert sich auf die detaillierte Anforderungsanalyse. Er 
 - Skalierbar auf bis zu 1.000 Mitarbeiter
 
 ### Kompatibilität
-- Vollständige Integration in Microsoft 365 (SharePoint Online, Teams, Power Platform)
+- Vollständige Integration in Microsoft 365 (SharePoint Online, Teams)
 - Unterstützung moderner Webbrowser (Chrome, Edge, Firefox, Safari)
 
 ---
@@ -312,7 +312,6 @@ Der Systemkontext beschreibt die Einbettung des Projekt-Workspace-Managers in se
 | **SharePoint Online** | Zentrales Zielsystem zur Erstellung und Verwaltung der Projektarbeitsbereiche |
 | **Microsoft Teams** | Optional angebunden für Teamerstellung und Zusammenarbeit |
 | **Microsoft Graph API** | Technische Schnittstelle für Site-Erstellung, Berechtigungen und Metadaten |
-| **Power Platform (Power Apps & Power Automate)** | Technologische Basis für Benutzeroberfläche, Geschäftslogik und Automatisierungen |
 
 ---
 
@@ -324,7 +323,7 @@ Auftrag 1 hat den Kontext durch Unternehmensbeschreibung, Projektauftrag, Stakeh
 
 **Nächste Schritte:**
 
-1. **Systemarchitektur-Design** – basierend auf den identifizierten Anforderungen unter Nutzung von Power Apps, Power Automate und SharePoint Framework
+1. **Systemarchitektur-Design** – basierend auf den identifizierten Anforderungen, umgesetzt als Java-Anwendung mit Zugriff auf SharePoint Online über die Microsoft Graph API
 2. **Entwicklungsplanung** – Sprint-Einteilung, erste Iteration adressiert FA01–FA04
 3. **Prototyp-Entwicklung** – für Benutzer-Feedback und frühzeitige Validierung der UX
 4. **Sicherheits- und Compliance-Review** – durch IT-Security und Datenschutzbeauftragte vor Produktivsetzung

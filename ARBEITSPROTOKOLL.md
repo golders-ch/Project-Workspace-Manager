@@ -124,14 +124,14 @@ Ziel: Der Prototyp-Code soll dem im Unterricht behandelten Niveau entsprechen un
 - 10 funktionale Anforderungen (FA01–FA10) priorisiert und beschrieben
 - Nicht-funktionale Anforderungen in 8 Kategorien definiert (Performance, Sicherheit, Benutzerfreundlichkeit, Compliance, Zuverlässigkeit, Wartbarkeit, Skalierbarkeit, Kompatibilität)
 - Use-Case-Spezifikationen für FA01 und FA02 detailliert ausgearbeitet
-- Systemkontext und Umsysteme dokumentiert (Entra ID, SharePoint, Teams, Graph API, Power Platform)
+- Systemkontext und Umsysteme dokumentiert (Entra ID, SharePoint, Teams, Graph API)
 - Erfolgskriterien und Akzeptanzbedingungen festgelegt
 - Iterationsplanung: MVP = FA01–FA04 (Score > 70)
 
 **Ordnerstruktur (Aufgabe 2 – Projektumgebung)**
 - Vollständige Ordnerstruktur im Repository aufgebaut:
   - `docs/` (anforderungen, architektur, besprechungen, projektumgebung, entscheidungen)
-  - `src/` (power-apps, power-automate, sharepoint mit templates/scripts/listen)
+  - `src/` (sharepoint mit templates/listen)
   - `installation/` (checklisten, konfiguration)
   - `tests/` (uat, testfaelle)
 - README.md mit Projektbeschreibung, Strukturübersicht und Technologie-Stack aktualisiert
