@@ -1,12 +1,3 @@
-/*
- * Datei:       Application.java
- * Projekt:     Project-Workspace-Manager (Prototyp, Iteration 1)
- * Schicht:     Presentation
- * Beschreibung: Einstiegspunkt des Prototyps. Verdrahtet alle Schichten,
- *              erstellt mehrere Projektarbeitsbereich-Objekte mit "harten"
- *              Testdaten und gibt sie ueber den ConsoleClient auf der
- *              Konsole aus (Endbenutzertest, Auftrag 5).
- */
 package ch.juve.pwm.presentation;
 
 import ch.juve.pwm.business.ArbeitsbereichService;
@@ -16,24 +7,12 @@ import ch.juve.pwm.persistence.IDataAccess;
 import ch.juve.pwm.persistence.MockDataAccess;
 import ch.juve.pwm.persistence.ProjektarbeitsbereichRepository;
 
-/**
- * Applikationsklasse mit {@code main}-Methode (Endbenutzertest).
- *
- * <p>Der Endbenutzertest demonstriert FA01 (Projektarbeitsbereich erstellen):
- * mehrere Arbeitsbereiche werden mit "harten" Testdaten erzeugt und auf der
- * Konsole angezeigt.</p>
- */
 public final class Application {
 
     private Application() {
         // Utility-Klasse: keine Instanziierung.
     }
 
-    /**
-     * Einstiegspunkt der Applikation.
-     *
-     * @param args Kommandozeilenargumente (nicht verwendet)
-     */
     public static void main(String[] args) {
         // Schichten verdrahten (Dependency Injection per Konstruktor).
         IDataAccess dataAccess = MockDataAccess.getInstance();
