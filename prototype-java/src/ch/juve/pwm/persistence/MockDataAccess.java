@@ -11,7 +11,7 @@ public class MockDataAccess implements IDataAccess {
     private MockDataAccess() {
     }
 
-    public static MockDataAccess getInstance() {
+        public static MockDataAccess getInstance() {
         if (instance == null) {
             instance = new MockDataAccess();
         }
